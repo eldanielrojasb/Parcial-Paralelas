@@ -16,7 +16,6 @@ Los cambios en cuanto a cantidad de hilos a usar se asignaron en el Makefile, de
 	OMP_NUM_THREADS=$$NUM_CORES time ./all.sh
 
     Compilando tambien con gcc -o main main.c -fopenmp
-    
 # Procesamiento de imágenes
 
 Este directorio contiene un conjunto de códigos que permiten aplicar un conjunto de filtros básicos a una imagen usando el lenguaje C.
