@@ -11,4 +11,4 @@ exe:
 	OMP_NUM_THREADS=$$NUM_THREADS time ./all.sh
 
 clean:
-	rm -f main imagenes/*.bin imagenes/*.new imagenes/*.Identifier
+	rm -f main imagenes/*.bin imagenes/*.new imagenes/*.Identifier 

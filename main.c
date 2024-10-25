@@ -82,13 +82,13 @@ void guardarImagen(int *imagen, int width, int height) {
 
 //Paralelizar
 void aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
-    int Gx[3][3]={{-1,0,1},{-2,0,2},{-1,0,1}};
-    int Gy[3][3]={{-1,-2,-1},{0,0,0},{1,2,1}};
+    int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
+    int Gy[3][3] = {{-1, -2, -1},{0, 0, 0}, {1, 2, 1}};
 
     //Paralelizar el bucle externo 
     #pragma omp parallel for
     for (int y = 1; y < height-1; y++){
-        for (int x = 1; x < width; x++){
+        for (int x = 1; x < width-1; x++){
             int sumX = 0;
             int sumY = 0;
 
