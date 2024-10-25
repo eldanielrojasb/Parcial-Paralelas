@@ -1,10 +1,13 @@
 all: compile exe clean
 
 compile:
-	gcc -o main main.c
+	gcc -o main main.c -fopenmp
 
 exe:
-	./all.sh
+	# Obtener el número de núcleos disponibles
+	NUM_CORES=$$(nproc); \
+	echo "Usando $$NUM_CORES hilos"; \
+	OMP_NUM_THREADS=$$NUM_CORES time ./all.sh
 
 clean:
-	rm -f main *.bin *.new 
+	rm -f main imagenes/*.bin imagenes/*.new imagenes/*.Identifier

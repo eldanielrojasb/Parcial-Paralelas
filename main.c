@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <omp.h>
 // Funciones placeholder para la carga y guardado de imágenes
 void cargarImagen(int *imagen, int width, int height);
 void guardarImagen(int *imagen, int width, int height);
@@ -80,10 +80,13 @@ void guardarImagen(int *imagen, int width, int height) {
     fclose(archivo);
 }
 
-
+//Paralelizar
 void aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
     int Gx[3][3]={{-1,0,1},{-2,0,2},{-1,0,1}};
     int Gy[3][3]={{-1,-2,-1},{0,0,0},{1,2,1}};
+
+    //Paralelizar el bucle externo 
+    #pragma omp parallel for
     for (int y = 1; y < height-1; y++){
         for (int x = 1; x < width; x++){
             int sumX = 0;
@@ -101,11 +104,20 @@ void aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
     }
 }
 
-
+//Paralelizar
 int calcularSumaPixeles(int *imagen, int width, int height) {
     int suma = 0;
-    for (int i = 0; i < width * height; i++) {
-        suma += imagen[i];
+
+    #pragma omp parallel
+    {
+        int suma_local = 0;
+        #pragma omp for
+        for (int i = 0; i < width * height; i++) {
+        suma_local += imagen[i];
+        }
+
+        #pragma omp atomic
+        suma += suma_local;
     }
     return suma;
 }
