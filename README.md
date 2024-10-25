@@ -1,3 +1,22 @@
+# Tener en cuenta
+
+Los cambios en cuanto a cantidad de hilos a usar se asignaron en el Makefile, de la forma : 
+    Para el caso de el doble de hilos que de nucleos:
+    
+    Obtener el número de núcleos disponibles
+	NUM_CORES=$$(nproc); \
+	NUM_THREADS=$$((NUM_CORES * 2)); \
+	echo "Usando $$NUM_THREADS hilos"; \
+	OMP_NUM_THREADS=$$NUM_THREADS time ./all.sh
+
+    Para el caso de la misma cantidad de hilos que de nucleos:
+    # Obtener el número de núcleos disponibles
+	NUM_CORES=$$(nproc); \
+	echo "Usando $$NUM_CORES hilos"; \
+	OMP_NUM_THREADS=$$NUM_CORES time ./all.sh
+
+    Compilando tambien con gcc -o main main.c -fopenmp
+    
 # Procesamiento de imágenes
 
 Este directorio contiene un conjunto de códigos que permiten aplicar un conjunto de filtros básicos a una imagen usando el lenguaje C.

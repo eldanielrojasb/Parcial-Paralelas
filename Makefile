@@ -6,8 +6,9 @@ compile:
 exe:
 	# Obtener el número de núcleos disponibles
 	NUM_CORES=$$(nproc); \
-	echo "Usando $$NUM_CORES hilos"; \
-	OMP_NUM_THREADS=$$NUM_CORES time ./all.sh
+	NUM_THREADS=$$((NUM_CORES * 2)); \
+	echo "Usando $$NUM_THREADS hilos"; \
+	OMP_NUM_THREADS=$$NUM_THREADS time ./all.sh
 
 clean:
 	rm -f main imagenes/*.bin imagenes/*.new imagenes/*.Identifier
