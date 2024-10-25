@@ -1,4 +1,4 @@
-#Tener en cuenta
+# Tener en cuenta
 
 Los cambios en cuanto a cantidad de hilos a usar se asignaron en el Makefile, de la forma : 
     Para el caso de el doble de hilos que de nucleos:
